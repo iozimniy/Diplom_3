@@ -22,10 +22,6 @@ public class ProfilePage {
         this.driver = driver;
     }
 
-    public void open() {
-        driver.get(PROFILE_URL);
-    }
-
     //ждём загрузки профиля
     public void waitProfilePage() {
         try {

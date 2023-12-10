@@ -5,7 +5,6 @@ import io.restassured.response.ValidatableResponse;
 
 public class UserClient extends site.nomoreparties.stellarburgers.Client {
     static final String USER_PATH_CREATE = "api/auth/register";
-    static final String USER_PATH_LOGIN = "api/auth/login";
     static final String USER_PATH_DATA = "api/auth/user";
 
     @Step("Create user")
