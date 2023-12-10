@@ -6,16 +6,17 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 import static site.nomoreparties.stellarburgers.Config.BASE_URL;
 
 public class MainConstructor {
 
-    private static By placeAnOrderButton = By.xpath(".//button[text() = 'Оформить заказ']");
-    private static By authButton = By.xpath(".//button[text() = 'Войти в аккаунт']");
-    private static By accountButton = By.xpath(".//p[text() = 'Личный Кабинет']");
-    private static By header = By.xpath(".//h1[text() = 'Соберите бургер']");
+    private static final By placeAnOrderButton = By.xpath(".//button[text() = 'Оформить заказ']");
+    private static final By authButton = By.xpath(".//button[text() = 'Войти в аккаунт']");
+    private static final By accountButton = By.xpath(".//p[text() = 'Личный Кабинет']");
+    private static final By header = By.xpath(".//h1[text() = 'Соберите бургер']");
 
     WebDriver driver;
 
@@ -33,7 +34,7 @@ public class MainConstructor {
             new WebDriverWait(driver, Duration.ofSeconds(5))
                     .until(ExpectedConditions.visibilityOfElementLocated(header));
         } catch (TimeoutException e) {
-            throw new  AssertionError("Не открывается главная страница");
+            throw new AssertionError("Не открывается главная страница");
         }
 
     }

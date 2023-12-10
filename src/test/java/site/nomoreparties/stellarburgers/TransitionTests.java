@@ -8,7 +8,10 @@ import org.junit.Test;
 import site.nomoreparties.stellarburgers.pages.LoginPage;
 import site.nomoreparties.stellarburgers.pages.MainConstructor;
 import site.nomoreparties.stellarburgers.pages.ProfilePage;
-import site.nomoreparties.stellarburgers.user.*;
+import site.nomoreparties.stellarburgers.user.User;
+import site.nomoreparties.stellarburgers.user.UserChecks;
+import site.nomoreparties.stellarburgers.user.UserClient;
+import site.nomoreparties.stellarburgers.user.UserGenerator;
 
 public class TransitionTests {
     @Rule

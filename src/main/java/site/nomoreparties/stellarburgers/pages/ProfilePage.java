@@ -5,6 +5,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 import static site.nomoreparties.stellarburgers.Config.PROFILE_URL;
@@ -16,6 +17,7 @@ public class ProfilePage {
     private static final By constructorButton = By.xpath(".//p[text() = 'Конструктор']");
 
     WebDriver driver;
+
     public ProfilePage(WebDriver driver) {
         this.driver = driver;
     }

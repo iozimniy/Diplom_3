@@ -1,13 +1,9 @@
 package site.nomoreparties.stellarburgers.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
-import static org.junit.Assert.assertEquals;
 
+import static org.junit.Assert.assertEquals;
 import static site.nomoreparties.stellarburgers.Config.BASE_URL;
 
 public class Constructor {
@@ -41,7 +37,7 @@ public class Constructor {
     //кликаем на соусы
     public void isSauceCurrent() {
         driver.findElement(saucesTab).click();
-        assertEquals("Раздел соусов не текущий!",saucesHeader, driver.findElement(activeTab).getText());
+        assertEquals("Раздел соусов не текущий!", saucesHeader, driver.findElement(activeTab).getText());
     }
 
     public void isFillingsCurrent() {
