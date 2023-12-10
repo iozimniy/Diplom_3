@@ -10,6 +10,11 @@ import java.io.File;
 import java.time.Duration;
 
 public class DriverRule extends ExternalResource {
+
+    private static final String CHROME_WEBDRIVER = "C:/WebDriver/bin/chromedriver";
+    private static final String CHROME_BROWSER_PATH = "E:/Prog/chrome for testing/chrome-win64/chrome.exe";
+    private static final String YANDEX_WEBDRIVER = "C:/WebDriver/bin/yandexdriver.exe";
+    private static final String YANDEX_BROWSER_PATH = "C:/Users/Китрисс/AppData/Local/Yandex/YandexBrowser/Application/browser.exe";
     WebDriver driver;
 
     @Override
@@ -24,10 +29,10 @@ public class DriverRule extends ExternalResource {
 
         System.setProperty("webriver.http.factory", "jdk-http-client");
         ChromeDriverService service = new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File("C:/WebDriver/bin/chromedriver"))
+                .usingDriverExecutable(new File(CHROME_WEBDRIVER))
                 .build();
         ChromeOptions options = new ChromeOptions()
-                .setBinary("E:/Prog/chrome for testing/chrome-win64/chrome.exe")
+                .setBinary(CHROME_BROWSER_PATH)
                 .addArguments("start-maximized");
 
         driver = new ChromeDriver(service, options);
@@ -39,10 +44,10 @@ public class DriverRule extends ExternalResource {
 
         System.setProperty("webriver.http.factory", "jdk-http-client");
         ChromeDriverService service = new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File("C:/WebDriver/bin/chromedriver"))
+                .usingDriverExecutable(new File(YANDEX_WEBDRIVER))
                 .build();
         ChromeOptions options = new ChromeOptions()
-                .setBinary("C:/Users/Китрисс/AppData/Local/Yandex/YandexBrowser/Application/browser.exe")
+                .setBinary(YANDEX_BROWSER_PATH)
                 .addArguments("start-maximized");
 
         driver = new ChromeDriver(service, options);
