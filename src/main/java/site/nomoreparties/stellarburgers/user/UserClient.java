@@ -1,0 +1,26 @@
+package site.nomoreparties.stellarburgers.user;
+
+import io.qameta.allure.Step;
+import io.restassured.response.ValidatableResponse;
+
+public class UserClient extends site.nomoreparties.stellarburgers.Client {
+    static final String USER_PATH_CREATE = "api/auth/register";
+    static final String USER_PATH_DATA = "api/auth/user";
+
+    @Step("Создать пользователя")
+    public static ValidatableResponse createUser(User user) {
+        return spec()
+                .body(user)
+                .when()
+                .post(USER_PATH_CREATE)
+                .then().log().all();
+    }
+
+    @Step("Удалить тестового пользователя")
+    public static ValidatableResponse delete(String accessToken) {
+        return specAuth(accessToken)
+                .when()
+                .delete(USER_PATH_DATA)
+                .then().log().all();
+    }
+}
