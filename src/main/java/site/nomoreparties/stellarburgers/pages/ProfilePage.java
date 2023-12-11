@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -8,13 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static site.nomoreparties.stellarburgers.Config.PROFILE_URL;
-
 public class ProfilePage {
 
-    //кнопка выход
-    private static final By exitButton = By.xpath(".//button[text() = 'Выход']");
-    private static final By constructorButton = By.xpath(".//p[text() = 'Конструктор']");
+    private final By exitButton = By.xpath(".//button[text() = 'Выход']");
+    private final By constructorButton = By.xpath(".//p[text() = 'Конструктор']");
+    private final By logo = By.xpath(".//div[contains(@class, 'logo')]/a[@href = '/']");
 
     WebDriver driver;
 
@@ -22,7 +21,7 @@ public class ProfilePage {
         this.driver = driver;
     }
 
-    //ждём загрузки профиля
+    @Step("Дождаться загрузки профиля и проверить, что он загрузился")
     public void waitProfilePage() {
         try {
             new WebDriverWait(driver, Duration.ofSeconds(5))
@@ -32,15 +31,25 @@ public class ProfilePage {
         }
     }
 
-    //переходим на главную через клик по конструктору в хедере
+    @Step("Нажать на кнопку Конструктор в хедере")
     public MainConstructor clickOnConstructorButton() {
-        driver.findElement(constructorButton).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(constructorButton)).click();
         return new MainConstructor(driver);
     }
 
-    //кликаем на кнопку выход
+    @Step("Нажать на логотип в хедере")
+    public MainConstructor clickOnLogo() {
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(logo))
+                .click();
+        return new MainConstructor(driver);
+    }
+
+    @Step("Нажать на кнопку Выход")
     public LoginPage clickOnExitButton() {
-        driver.findElement(exitButton).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(exitButton)).click();
         return new LoginPage(driver);
     }
 }

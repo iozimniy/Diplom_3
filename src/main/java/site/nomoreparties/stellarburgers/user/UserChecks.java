@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class UserChecks {
 
-    @Step("Creare user and Getting accessToken")
+    @Step("Проверить, что пользователь создался успешно")
     public static String assertUserCreateSuccessfully(ValidatableResponse response, String email, String name) {
         String accessToken = response
                 .assertThat()

@@ -7,7 +7,7 @@ public class UserClient extends site.nomoreparties.stellarburgers.Client {
     static final String USER_PATH_CREATE = "api/auth/register";
     static final String USER_PATH_DATA = "api/auth/user";
 
-    @Step("Create user")
+    @Step("Создать пользователя")
     public static ValidatableResponse createUser(User user) {
         return spec()
                 .body(user)
@@ -16,7 +16,7 @@ public class UserClient extends site.nomoreparties.stellarburgers.Client {
                 .then().log().all();
     }
 
-    @Step("Delete Test Data")
+    @Step("Удалить тестового пользователя")
     public static ValidatableResponse delete(String accessToken) {
         return specAuth(accessToken)
                 .when()

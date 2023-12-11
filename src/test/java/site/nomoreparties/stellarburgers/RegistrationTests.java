@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Rule;
 import org.junit.Test;
 import site.nomoreparties.stellarburgers.pages.LoginPage;
@@ -14,6 +15,7 @@ public class RegistrationTests {
     User user;
 
     @Test
+    @DisplayName("Регистрация с валидными данными")
     public void registrationSuccessfully() {
         user = UserGenerator.generateRandomUser();
 
@@ -27,6 +29,7 @@ public class RegistrationTests {
     }
 
     @Test
+    @DisplayName("Регистрация с невалидным паролём")
     public void errorPasswordLessSixSimbols() {
         user = UserGenerator.generateRandomIncorrectPassword();
 

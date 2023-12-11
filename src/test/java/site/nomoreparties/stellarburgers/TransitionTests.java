@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Before;
@@ -29,6 +30,7 @@ public class TransitionTests {
 
 
     @Test
+    @DisplayName("Переход в Личный Кабинет")
     public void transitionToAccountTest() {
         LoginPage loginPage = new LoginPage(rule.driver);
         MainConstructor mainConstructor = loginPage.loginUser(user);
@@ -42,6 +44,7 @@ public class TransitionTests {
     }
 
     @Test
+    @DisplayName("Переход из Личного Кабинета по кнопке Конструктор в хедере")
     public void transitionFromProfilePageToConstructor() {
         LoginPage loginPage = new LoginPage(rule.driver);
         MainConstructor mainConstructor = loginPage.loginUser(user);
@@ -50,6 +53,19 @@ public class TransitionTests {
         profilePage.waitProfilePage();
 
         MainConstructor mainConstructorFromProfile = profilePage.clickOnConstructorButton();
+        mainConstructorFromProfile.waitMainConstructor();
+    }
+
+    @Test
+    @DisplayName("Переход из Личного кабинета по клику на логотип в хедере")
+    public void transitionFromProfileToMainPage() {
+        LoginPage loginPage = new LoginPage(rule.driver);
+        MainConstructor mainConstructor = loginPage.loginUser(user);
+
+        ProfilePage profilePage = mainConstructor.clickOnProfileButton();
+        profilePage.waitProfilePage();
+
+        MainConstructor mainConstructorFromProfile = profilePage.clickOnLogo();
         mainConstructorFromProfile.waitMainConstructor();
     }
 

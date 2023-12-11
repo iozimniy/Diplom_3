@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
@@ -13,10 +14,10 @@ import static site.nomoreparties.stellarburgers.Config.BASE_URL;
 
 public class MainConstructor {
 
-    private static final By placeAnOrderButton = By.xpath(".//button[text() = 'Оформить заказ']");
-    private static final By authButton = By.xpath(".//button[text() = 'Войти в аккаунт']");
-    private static final By accountButton = By.xpath(".//p[text() = 'Личный Кабинет']");
-    private static final By header = By.xpath(".//h1[text() = 'Соберите бургер']");
+    private final By placeAnOrderButton = By.xpath(".//button[text() = 'Оформить заказ']");
+    private final By authButton = By.xpath(".//button[text() = 'Войти в аккаунт']");
+    private final By accountButton = By.xpath(".//p[text() = 'Личный Кабинет']");
+    private final By header = By.xpath(".//h1[text() = 'Соберите бургер']");
 
     WebDriver driver;
 
@@ -24,11 +25,12 @@ public class MainConstructor {
         this.driver = driver;
     }
 
+    @Step("Открыть главную страницу")
     public void open() {
         driver.get(BASE_URL);
     }
 
-    //дожидаемся загрузки страницы
+    @Step("Дождаться загрузки главной страницы и проверить, что она загрузилась")
     public void waitMainConstructor() {
         try {
             new WebDriverWait(driver, Duration.ofSeconds(5))
@@ -39,7 +41,7 @@ public class MainConstructor {
 
     }
 
-    //проверяем, что кнопка имеет нужное название
+    @Step("Проверить, что кнопка имеет нужное название")
     public void checkOrderButtonName() {
         try {
             driver.findElement(placeAnOrderButton);
@@ -48,18 +50,20 @@ public class MainConstructor {
         }
     }
 
-    //клик на кнопку "Войти в аккаунт"
+    @Step("Нажать на кнопку Войти в аккаунт")
     public LoginPage clickOnAuthButton() {
-        driver.findElement(authButton).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(authButton)).click();
         return new LoginPage(driver);
     }
 
-    //клик на кнопку "Личный Кабинет"
+    @Step("Нажать на кнопку Личный Кабинет")
     public LoginPage clickOnAccountButton() {
-        driver.findElement(authButton).click();
+        driver.findElement(accountButton).click();
         return new LoginPage(driver);
     }
 
+    @Step("Нажать на кнопку Личный Кабинет")
     public ProfilePage clickOnProfileButton() {
         driver.findElement(accountButton).click();
         return new ProfilePage(driver);

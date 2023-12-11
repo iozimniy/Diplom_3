@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Before;
@@ -30,6 +31,7 @@ public class AuthorizationTests {
     }
 
     @Test
+    @DisplayName("Вход через кнопку Войти в аккаунт на главной странице")
     public void authFromAuthButtonMainPage() {
         MainConstructor mainConstructor = new MainConstructor(rule.driver);
 
@@ -46,6 +48,7 @@ public class AuthorizationTests {
     }
 
     @Test
+    @DisplayName("Вход через кнопку Личный Кабинет")
     public void authFromAccountButtonMainPage() {
         MainConstructor mainConstructor = new MainConstructor(rule.driver);
 
@@ -62,6 +65,7 @@ public class AuthorizationTests {
     }
 
     @Test
+    @DisplayName("Вход через кнопку на странице регистрации")
     public void authFromEnterLinkRegistrationPage() {
         RegistrationPage registrationPage = new RegistrationPage(rule.driver);
 
@@ -78,6 +82,7 @@ public class AuthorizationTests {
     }
 
     @Test
+    @DisplayName("Вход через кнопку на странице восстановления пароля")
     public void authFromEnterLinkForgotPasswordPage() {
         ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage(rule.driver);
 

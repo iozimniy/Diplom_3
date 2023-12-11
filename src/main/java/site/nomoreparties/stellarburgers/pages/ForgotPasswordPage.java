@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,8 +12,7 @@ import static site.nomoreparties.stellarburgers.Config.FORGOT_PASSWORD_URL;
 
 public class ForgotPasswordPage {
 
-    //кнопка "Войти"
-    private static final By enterLink = By.xpath(".//a[@href = '/login']");
+    private final By enterLink = By.xpath(".//a[@href = '/login']");
 
     WebDriver driver;
 
@@ -20,19 +20,21 @@ public class ForgotPasswordPage {
         this.driver = driver;
     }
 
+    @Step("Открыть страницу восстановления пароля")
     public void open() {
         driver.get(FORGOT_PASSWORD_URL);
     }
 
-    //ждём загрузки страницы
+    @Step("Дождаться загрузки страницы восстановления пароля и проверить, что она загрузилась")
     public void waitForgotPasswordPage() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(enterLink));
     }
 
-    //кликаем по ссылке "Войти"
+    @Step("Нажать на кнопку Войти")
     public LoginPage clickOnEnterLink() {
-        driver.findElement(enterLink).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(enterLink)).click();
         return new LoginPage(driver);
     }
 }

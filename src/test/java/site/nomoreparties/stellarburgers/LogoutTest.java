@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Before;
@@ -29,6 +30,7 @@ public class LogoutTest {
     }
 
     @Test
+    @DisplayName("Выход по кнопке в Личном Кабинете")
     public void logoutTest() {
         LoginPage loginPage = new LoginPage(rule.driver);
         MainConstructor mainConstructor = loginPage.loginUser(user);

@@ -19,10 +19,10 @@ public class DriverRule extends ExternalResource {
 
     @Override
     protected void before() throws Throwable {
-        if ("yandex".equals(System.getProperty("browser")))
-            setUpYandex();
-        else
+        if ("chrome".equals(System.getProperty("browser")))
             setUpChrome();
+        else
+            setUpYandex();
     }
 
     private void setUpChrome() {

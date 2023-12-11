@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -13,9 +14,9 @@ import static site.nomoreparties.stellarburgers.Config.LOGIN_URL;
 
 public class LoginPage {
 
-    private static final By emailField = By.xpath(".//input[@name = 'name']");
-    private static final By passwordField = By.xpath(".//input[@name = 'Пароль']");
-    private static final By enterButton = By.xpath(".//button[text() = 'Войти']");
+    private final By emailField = By.xpath(".//input[@name = 'name']");
+    private final By passwordField = By.xpath(".//input[@name = 'Пароль']");
+    private final By enterButton = By.xpath(".//button[text() = 'Войти']");
 
     WebDriver driver;
     User user;
@@ -25,11 +26,12 @@ public class LoginPage {
         this.user = user;
     }
 
+    @Step("Открыть страницу Вход")
     public void open() {
         driver.get(LOGIN_URL);
     }
 
-    //дожидаемся загрузки страницы
+    @Step("Дождаться загрузки страницы входа и проверить, что она загрузилась")
     public void waitLoginPage() {
         try {
             new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -39,7 +41,6 @@ public class LoginPage {
         }
     }
 
-    //заполняем поле почты
     public void fillInEmail(User user) {
         driver.findElement(emailField).sendKeys(user.getEmail());
     }
@@ -48,19 +49,20 @@ public class LoginPage {
         driver.findElement(passwordField).sendKeys(user.getPassword());
     }
 
-    //заполним все поля сразу
+    @Step("Заполнить поля Email и Пароль")
     public void fillInData(User user) {
         fillInEmail(user);
         fillinPassword(user);
     }
 
-    //кликаем на кнопку "Войти"
+    @Step("Нажать на кнопку Войти")
     public MainConstructor clickEnterButton() {
-        driver.findElement(enterButton).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(enterButton)).click();
         return new MainConstructor(driver);
     }
 
-    //логиним созданного пользователя одним шагом
+    @Step("Авторизовать пользователя")
     public MainConstructor loginUser(User user) {
         open();
         waitLoginPage();
